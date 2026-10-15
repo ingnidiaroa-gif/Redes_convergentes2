@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semana 9 · Seguridad en Redes Convergentes</title>
+<style>
+:root{--blue:#123e68;--cyan:#00a5b5;--green:#41a36f;--orange:#f59e0b;--red:#d64545;--bg:#f4f7fb;--ink:#1f2937;--muted:#5b6675;--card:#fff;}
+*{box-sizing:border-box} body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5} header{background:linear-gradient(135deg,var(--blue),#061829);color:white;padding:34px 5vw 42px} header h1{margin:0;font-size:clamp(30px,5vw,54px);line-height:1.05} header p{font-size:18px;max-width:980px;color:#d7ecff}.wrap{max-width:1160px;margin:-28px auto 60px;padding:0 22px}.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}.tab{border:none;background:#e1e8f2;color:var(--blue);padding:12px 16px;border-radius:999px;font-weight:700;cursor:pointer}.tab.active{background:var(--blue);color:white}.panel{display:none;background:white;border-radius:24px;padding:28px;box-shadow:0 18px 45px rgba(15,35,65,.12);margin-bottom:18px}.panel.active{display:block}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:18px}.card{background:#fff;border:1px solid #e5edf7;border-radius:18px;padding:18px;box-shadow:0 8px 20px rgba(15,35,65,.07)}.card h3{margin-top:0;color:var(--blue)}.badge{display:inline-block;padding:5px 10px;border-radius:999px;background:#e9f7f8;color:#087987;font-size:13px;font-weight:700}.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:20px;align-items:center}.topology{position:relative;min-height:440px;border-radius:24px;background:linear-gradient(180deg,#eef8fb,#f8fbff);border:1px solid #d5e7f5;padding:22px;overflow:hidden}.node{position:absolute;background:white;border:2px solid var(--blue);border-radius:18px;padding:12px;text-align:center;font-weight:700;box-shadow:0 8px 16px rgba(15,35,65,.12);cursor:pointer;transition:.2s}.node:hover{transform:scale(1.05);border-color:var(--cyan)}.line{position:absolute;height:3px;background:#95aac0;transform-origin:left center}.n1{left:45%;top:20px}.n2{left:42%;top:110px}.n3{left:16%;top:210px}.n4{left:42%;top:210px}.n5{left:67%;top:210px}.n6{left:7%;top:335px}.n7{left:39%;top:335px}.n8{left:68%;top:335px}.l1{left:50%;top:92px;width:3px;height:55px}.l2{left:50%;top:185px;width:3px;height:60px}.l3{left:50%;top:238px;width:210px;transform:rotate(0deg)}.l4{left:26%;top:238px;width:190px}.l5{left:21%;top:305px;width:3px;height:60px}.l6{left:50%;top:305px;width:3px;height:60px}.l7{left:76%;top:305px;width:3px;height:60px}.info{background:#08243e;color:white;border-radius:18px;padding:16px;min-height:120px}.risk-table{width:100%;border-collapse:collapse}.risk-table th,.risk-table td{border-bottom:1px solid #e5edf7;padding:10px;text-align:left}.risk-table th{background:#123e68;color:white}.risk-low{color:var(--green);font-weight:800}.risk-med{color:var(--orange);font-weight:800}.risk-high{color:var(--red);font-weight:800}.sliderBox{display:grid;grid-template-columns:1fr 1fr;gap:16px}.question{border:1px solid #e5edf7;border-radius:16px;padding:16px;margin-bottom:12px}.question button{display:block;width:100%;margin:7px 0;padding:10px;border:1px solid #d5e0ea;background:#fff;border-radius:10px;text-align:left;cursor:pointer}.question button.correct{background:#dcfce7;border-color:#22c55e}.question button.wrong{background:#fee2e2;border-color:#ef4444}.scenario{padding:14px;border:2px solid #e4ebf2;border-radius:14px;cursor:pointer}.scenario.active{border-color:var(--cyan);background:#eefcff}.meter{height:12px;background:#e6edf5;border-radius:999px;overflow:hidden;margin:8px 0 16px}.meter span{display:block;height:100%;width:40%;background:linear-gradient(90deg,var(--green),var(--orange),var(--red))}footer{text-align:center;color:var(--muted);padding:30px}@media(max-width:760px){.hero{grid-template-columns:1fr}.topology{min-height:500px}.node{font-size:12px}.sliderBox{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Semana 9 · Seguridad en una Red Convergente</h1>
+  <p>Actividad interactiva para comprender amenazas, vulnerabilidades, SDN, DoS, segmentación, autenticación, monitoreo y riesgo residual.</p>
+</header>
+<div class="wrap">
+  <div class="tabs">
+    <button class="tab active" onclick="showTab('inicio',this)">Inicio</button>
+    <button class="tab" onclick="showTab('lecturas',this)">Lecturas</button>
+    <button class="tab" onclick="showTab('arquitectura',this)">Arquitectura</button>
+    <button class="tab" onclick="showTab('riesgo',this)">Matriz de riesgo</button>
+    <button class="tab" onclick="showTab('simulador',this)">Simulador</button>
+    <button class="tab" onclick="showTab('quiz',this)">Quiz</button>
+  </div>
+
+  <section id="inicio" class="panel active">
+    <div class="hero">
+      <div>
+        <span class="badge">Caso central: Clínica VitalNet</span>
+        <h2>¿Qué pasa si un atacante entra por una cámara IP?</h2>
+        <p>En una red convergente, voz, video, datos, IoT, Wi-Fi y nube comparten infraestructura. La seguridad no puede depender de un solo firewall: debe combinar identidad, segmentación, cifrado, monitoreo y continuidad.</p>
+        <p><b>Misión:</b> actuar como líder de Ingeniería de Seguridad y proponer una defensa basada en activos, amenazas, vulnerabilidades, controles y riesgo residual.</p>
+      </div>
+      <div class="card">
+        <h3>Ruta de aprendizaje</h3>
+        <ol>
+          <li>Comprender SDN y convergencia.</li>
+          <li>Analizar DoS/DDoS contra SDN.</li>
+          <li>Identificar ataques en VoIP/UCS.</li>
+          <li>Diseñar seguridad integrada.</li>
+          <li>Evaluar riesgo inicial y residual.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section id="lecturas" class="panel">
+    <h2>Resumen humanizado de las lecturas</h2>
+    <div class="grid">
+      <div class="card"><h3>ONF · SDN</h3><p>SDN separa el plano de control del plano de reenvío. Esto permite programar la red, automatizar políticas y administrar varios dispositivos desde una visión centralizada.</p><p><b>Ejemplo:</b> aislar automáticamente una red de invitados cuando se detecta comportamiento sospechoso.</p></div>
+      <div class="card"><h3>PLOS ONE · DoS en SDN</h3><p>El controlador SDN es poderoso, pero también crítico. Un ataque DoS puede saturar el controlador, el canal controlador-switch o las tablas de flujo. ASP clasifica tráfico sospechoso y protege usuarios legítimos.</p><p><b>Ejemplo:</b> miles de solicitudes al portal de telemedicina saturan el controlador; la red debe diferenciar usuarios confiables de tráfico sospechoso.</p></div>
+      <div class="card"><h3>CACIDI · Vulnerabilidades</h3><p>Las plataformas convergentes como VoIP/UCS son útiles, pero exponen vectores como phishing, call hijacking, spoofing, TDoS y endpoints desactualizados. El usuario y la configuración son parte de la seguridad.</p><p><b>Ejemplo:</b> una llamada falsa persuade a un funcionario para entregar un código de acceso.</p></div>
+      <div class="card"><h3>Fortinet · Seguridad integrada</h3><p>El perímetro ya no es único. Hay LAN, WAN, nube, usuarios remotos, IoT y sucursales. Red y seguridad deben diseñarse juntas, no como capas separadas.</p><p><b>Ejemplo:</b> proteger solo el datacenter deja expuestos teletrabajo, nube y dispositivos IoT.</p></div>
+    </div>
+  </section>
+
+  <section id="arquitectura" class="panel">
+    <h2>Arquitectura de defensa en profundidad</h2>
+    <p>Haz clic sobre cada componente para ver su función.</p>
+    <div class="topology">
+      <div class="line l1"></div><div class="line l2"></div><div class="line l3"></div><div class="line l4"></div><div class="line l5"></div><div class="line l6"></div><div class="line l7"></div>
+      <div class="node n1" onclick="info('Internet: origen de tráfico legítimo y malicioso. Aquí pueden aparecer ataques DDoS, phishing o escaneos.')">Internet</div>
+      <div class="node n2" onclick="info('NGFW + IPS: inspecciona, filtra y puede bloquear tráfico malicioso. No es suficiente por sí solo.')">NGFW/IPS</div>
+      <div class="node n3" onclick="info('DMZ: zona para servicios expuestos. Aísla portales públicos de servidores internos críticos.')">DMZ</div>
+      <div class="node n4" onclick="info('Core/SDN: núcleo de la red. Si usa SDN, el controlador requiere protección especial contra DoS.')">Core / SDN</div>
+      <div class="node n5" onclick="info('SIEM/SOC: centraliza eventos y correlaciona señales para detectar incidentes temprano.')">SIEM/SOC</div>
+      <div class="node n6" onclick="info('Usuarios: aplicar MFA, RBAC y capacitación contra phishing.')">Usuarios</div>
+      <div class="node n7" onclick="info('IoT/VoIP: segmentar, actualizar, usar SBC para comunicaciones SIP y controlar movimiento lateral.')">IoT / VoIP</div>
+      <div class="node n8" onclick="info('Servidores críticos: cifrado, backups inmutables, control de privilegios y monitoreo.')">Servidores</div>
+    </div>
+    <div id="infobox" class="info">Selecciona un componente para iniciar la explicación.</div>
+  </section>
+
+  <section id="riesgo" class="panel">
+    <h2>Matriz de riesgo paso a paso</h2>
+    <table class="risk-table">
+      <thead><tr><th>Activo</th><th>Amenaza</th><th>Vulnerabilidad</th><th>P</th><th>I</th><th>Riesgo</th><th>Control</th><th>Residual</th></tr></thead>
+      <tbody id="riskBody"></tbody>
+    </table>
+    <div class="card" style="margin-top:18px">
+      <h3>Calculadora rápida</h3>
+      <div class="sliderBox">
+        <label>Probabilidad: <b id="pval">4</b><input type="range" min="1" max="5" value="4" oninput="calcRisk()" id="prob"></label>
+        <label>Impacto: <b id="ival">5</b><input type="range" min="1" max="5" value="5" oninput="calcRisk()" id="impact"></label>
+      </div>
+      <h3>Riesgo inicial: <span id="riskScore">20</span> · <span id="riskLevel" class="risk-high">Alto</span></h3>
+      <p>Recuerda: riesgo = probabilidad × impacto. Los controles no eliminan el riesgo, lo reducen.</p>
+    </div>
+  </section>
+
+  <section id="simulador" class="panel">
+    <h2>Simulador de escenarios</h2>
+    <p>Selecciona un escenario y observa qué indicadores se deterioran.</p>
+    <div class="grid">
+      <div class="scenario active" onclick="scenario('normal',this)"><b>Operación normal</b><br>Tráfico estable.</div>
+      <div class="scenario" onclick="scenario('ddos',this)"><b>Ataque DDoS</b><br>Muchas solicitudes anómalas.</div>
+      <div class="scenario" onclick="scenario('phishing',this)"><b>Phishing exitoso</b><br>Credencial VPN comprometida.</div>
+      <div class="scenario" onclick="scenario('iot',this)"><b>IoT vulnerable</b><br>Cámara con contraseña por defecto.</div>
+    </div>
+    <div class="card" style="margin-top:18px">
+      <h3 id="scTitle">Operación normal</h3>
+      <p id="scText">La red mantiene servicios críticos disponibles.</p>
+      <label>Disponibilidad</label><div class="meter"><span id="m1" style="width:90%"></span></div>
+      <label>Riesgo de movimiento lateral</label><div class="meter"><span id="m2" style="width:25%"></span></div>
+      <label>Impacto en usuario final</label><div class="meter"><span id="m3" style="width:20%"></span></div>
+    </div>
+  </section>
+
+  <section id="quiz" class="panel">
+    <h2>Quiz de validación</h2>
+    <div id="quizBox"></div>
+    <h3 id="score"></h3>
+  </section>
+</div>
+<footer>Semana 9 · Redes Convergentes · Seguridad en redes convergentes</footer>
+<script>
+function showTab(id,btn){document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active')}
+function info(txt){document.getElementById('infobox').innerHTML=txt}
+const risks=[['Controlador SDN','DoS/DDoS','Solicitudes masivas',5,5,25,'ASP, rate limiting, redundancia',10],['Telefonía IP','Call hijacking','SIP sin SBC',4,4,16,'SBC, TLS/SRTP',6],['Historia clínica','Ransomware','Phishing y privilegios altos',4,5,20,'MFA, RBAC, backup',8],['IoT','Movimiento lateral','Contraseñas por defecto',4,4,16,'VLAN IoT, NAC, ACL',6]];
+function riskClass(v){return v>=15?'risk-high':v>=8?'risk-med':'risk-low'}
+document.getElementById('riskBody').innerHTML=risks.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td>${r[4]}</td><td class="${riskClass(r[5])}">${r[5]}</td><td>${r[6]}</td><td class="${riskClass(r[7])}">${r[7]}</td></tr>`).join('');
+function calcRisk(){let p=+document.getElementById('prob').value,i=+document.getElementById('impact').value,s=p*i;document.getElementById('pval').textContent=p;document.getElementById('ival').textContent=i;document.getElementById('riskScore').textContent=s;let level=s>=15?'Alto':s>=8?'Medio':'Bajo';let el=document.getElementById('riskLevel');el.textContent=level;el.className=s>=15?'risk-high':s>=8?'risk-med':'risk-low'}
+function scenario(id,el){document.querySelectorAll('.scenario').forEach(s=>s.classList.remove('active'));el.classList.add('active');const data={normal:['Operación normal','La red mantiene servicios críticos disponibles.',90,25,20],ddos:['Ataque DDoS','El controlador, el firewall o el portal pueden saturarse. Se requieren mitigación DDoS, rate limiting y monitoreo.',35,45,80],phishing:['Phishing exitoso','Una credencial VPN comprometida aumenta riesgo de acceso indebido. MFA y RBAC reducen impacto.',70,70,55],iot:['IoT vulnerable','Un dispositivo IoT puede facilitar movimiento lateral si no existe segmentación y NAC.',75,85,50]};let d=data[id];document.getElementById('scTitle').textContent=d[0];document.getElementById('scText').textContent=d[1];document.getElementById('m1').style.width=d[2]+'%';document.getElementById('m2').style.width=d[3]+'%';document.getElementById('m3').style.width=d[4]+'%'}
+const quiz=[['¿Qué separa SDN?',['Plano de control y plano de reenvío','Usuario y contraseña','Cableado y energía'],0],['¿Cuál es el principal riesgo del controlador SDN?',['Que no use VLAN','Que sea blanco de DoS por centralizar decisiones','Que no soporte Wi-Fi'],1],['¿Qué control protege mejor el acceso remoto ante robo de contraseña?',['MFA','Cambiar el color del switch','Eliminar logs'],0],['¿Qué función cumple SIEM?',['Centralizar y correlacionar eventos','Crear llamadas VoIP','Aumentar ancho de banda'],0],['¿Qué significa riesgo residual?',['Riesgo antes de controles','Riesgo que queda después de controles','Riesgo inventado'],1]];
+let score=0,answered=0;document.getElementById('quizBox').innerHTML=quiz.map((q,idx)=>`<div class='question'><b>${idx+1}. ${q[0]}</b>${q[1].map((a,i)=>`<button onclick='answer(this,${idx},${i})'>${a}</button>`).join('')}</div>`).join('');
+function answer(btn,q,i){let parent=btn.parentElement;if(parent.dataset.done)return;parent.dataset.done=1;answered++;if(i===quiz[q][2]){btn.classList.add('correct');score++;}else{btn.classList.add('wrong');parent.children[quiz[q][2]+1].classList.add('correct')}document.getElementById('score').textContent=`Resultado: ${score}/${quiz.length}`}
+</script>
+</body>
+</html>
